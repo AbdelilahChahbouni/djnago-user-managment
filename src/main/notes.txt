@@ -1,0 +1,14 @@
+# how to create group and permissions and add user to group from django shell:
+
+>>> from django.contrib.auth.models import Group , Permission , User
+>>> from main.models import Post
+>>> from django.contrib.contentTypes.models import ContentType
+>>> mod , created = Group.objects.get_or_create(name="mod")
+>>> ct = ContentType.objects.get_for_model(model=Post)
+>>> perms = Permission.objects.filter(content_type=ct)
+>>> user = User.objects.filter(username="reda")
+>>> mod.user_set.add(user)
+
+
+
+
